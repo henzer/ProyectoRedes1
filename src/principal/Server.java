@@ -26,6 +26,7 @@ public class Server {
         while (true) {
             SocketChannel sChannel = ssChannel.accept();
             Thread t = new Thread(new Dispatcher(sChannel.socket()));
+            ServerCore.addThread(t);
             t.start();
         }
     }

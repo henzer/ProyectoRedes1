@@ -32,13 +32,24 @@ public class Dispatcher implements Runnable {
                         if (ServerCore.actualPlayer <ServerCore.limitPlayer){
                             out.writeBytes(ServerCore.actualPlayer + "\n");
                             ServerCore.actualPlayer++;
+                            if(ServerCore.actualPlayer == ServerCore.limitPlayer){
+                                for(Thread t: ServerCore.threads){
+                                    t.notify();
+                                }
+                            }else{
+                                wait();
+                            }
+                            out.writeBytes("start");
                         }else{
                             out.writeBytes(-1 + "\n");
                         }
+                    
                 }
             }
             
         } catch (IOException ex) {
+            ex.printStackTrace();
+        } catch (InterruptedException ex) {
             ex.printStackTrace();
         }
     }
