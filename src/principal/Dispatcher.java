@@ -25,16 +25,17 @@ public class Dispatcher implements Runnable {
             BufferedReader in = new BufferedReader(new InputStreamReader(socket.getInputStream()));
             ObjectOutputStream  out = new ObjectOutputStream(socket.getOutputStream());
             String line = in.readLine();
-            int n = Integer.parseInt(line);
-            int c = 0;
-            while(line!=null){
-                Player p = new Player(ServerCore.getPlayer(n).getTileX(), ServerCore.getPlayer(n).getTileY());
-                out.writeObject(p);
-                line = in.readLine();
-                n = Integer.parseInt(line);
-                System.out.println(line);
-                c++;
-                //this.wait();
+            
+            while(!line.equals("quit")){
+                switch(line){
+                    case "ready":
+                        if (ServerCore.actualPlayer <ServerCore.limitPlayer){
+                            out.writeBytes(ServerCore.actualPlayer + "\n");
+                            ServerCore.actualPlayer++;
+                        }else{
+                            out.writeBytes(-1 + "\n");
+                        }
+                }
             }
             
         } catch (IOException ex) {

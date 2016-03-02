@@ -12,9 +12,9 @@ import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
 
 public class Server {  
-    public void start() throws IOException{
+    public void start(int limit) throws IOException{
         ServerSocket serverSocket = null;
-        ServerCore sc = new ServerCore(2);
+        ServerCore sc = new ServerCore(limit);
         
         ServerCore.addPlayer(new Player(100, 100));
         ServerCore.addPlayer(new Player(0, 0));

@@ -131,7 +131,8 @@ public class ServerGame extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            server.start();
+            int n = 0;
+            server.start(n);
         } catch (IOException ex) {
             ex.printStackTrace();
         }
