@@ -16,9 +16,6 @@ public class Server {
         ServerSocket serverSocket = null;
         ServerCore sc = new ServerCore(limit);
         
-        ServerCore.addPlayer(new Player(100, 100));
-        ServerCore.addPlayer(new Player(0, 0));
-        
         ServerSocketChannel ssChannel = ServerSocketChannel.open();
         ssChannel.configureBlocking(true);
         int port = 12345;

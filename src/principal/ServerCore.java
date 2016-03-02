@@ -15,7 +15,7 @@ public class ServerCore {
         //Dependiendo el numero de jugadores, así será el numero de laberintos.
         for(int i = 0; i<n; i++){ 
             games.add(new int[40][40]);
-            positions.add(new Player(0, 0));
+            positions.add(new Player(0, 0, 0));
         }
     }
     
