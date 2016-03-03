@@ -8,16 +8,16 @@ package principal;
 import javax.swing.JPanel;
 
 public class RefreshOponents implements Runnable{
-    private JPanel panel;
+    private BoardOponent panel;
 
-    public RefreshOponents(JPanel panel) {
+    public RefreshOponents(BoardOponent panel) {
         this.panel = panel;
     }
     
     @Override
     public void run() {
         while(true){
-            panel.repaint();
+            panel.paintPlayer();
         }
     }
 

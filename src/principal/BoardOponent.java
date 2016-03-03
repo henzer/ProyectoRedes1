@@ -5,7 +5,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 //Esta clase es la que maneja dibuja el Laberinto y Maneja los movimientos del jugador.
-public class BoardOponent extends JPanel implements ActionListener
+public class BoardOponent extends JPanel
 {
     //Variables a utilizar
     
@@ -20,17 +20,15 @@ public class BoardOponent extends JPanel implements ActionListener
     private Font font = new Font("Sans Serif",Font.BOLD, 48);
     //Determinar si gano o no el juego.
     private boolean win = false;
+    private Player temp;
 
     //Constructor para inicializar todos los procesos.
     public BoardOponent(Player p)
     {
         map = new Map();
         player = p;
-
+        temp = new Player(1, 1, p.getNumJugador());
         setFocusable(true);
-        //Para realizar movimientos a cada 25 milisegundos.
-        timer = new Timer(5,this);
-        timer.start();
     }
 
     public Map getMap() {
@@ -56,18 +54,7 @@ public class BoardOponent extends JPanel implements ActionListener
     public void setPlayer(Player player) {
         this.player = player;
     }
-    
-    //Cada vez que se realice un movimiento.
-    public void actionPerformed(ActionEvent e)
-    {
-        if(map.getMap(player.getTileX(), player.getTileY())== 5)
-        {
-            Message = "Winner";
-            win = true;
-        }
-        repaint();
-    }
-    
+
     //Metodo para crear las graficas y la pantalla.
     public void paint(Graphics g)
     {
@@ -124,6 +111,25 @@ public class BoardOponent extends JPanel implements ActionListener
             g.drawString(Message, 100,250);
             repaint();
         } 
+    }
+    
+    public void paintPlayer(){
+        Graphics g = this.getGraphics();
+        int x = temp.getTileX();
+        int y = temp.getTileY();
+        if(player.getTileX()!=temp.getTileX() || player.getTileY()!=temp.getTileY()){
+            if(map.getMap(x, y)==0)
+                g.drawImage(map.getGrass(), x*10, y*10, null);
+            if(map.getMap(x, y)==4)
+                g.drawImage(map.getStart(), x*10, y*10, null);
+            if(map.getMap(x, y)==5)
+                g.drawImage(map.getFinish(), x*10, y*10, null);
+            temp.setTileX(player.getTileX());
+            temp.setTileY(player.getTileY());
+        }
+        ImageIcon img = new ImageIcon("smile.png");
+        g.drawImage(img.getImage(),player.getTileX()*10, player.getTileY()*10, null);
+        
     }
    
 }

@@ -66,8 +66,8 @@ public class ClientGame extends javax.swing.JFrame {
         this.jPanel1.add(board2);
 
         //Este es el hilo que se encargara de actualizar al oponente.
-        //Thread th = new Thread(new RefreshOponents(board2));
-        //th.start();
+        Thread th = new Thread(new RefreshOponents(board2));
+        th.start();
         
         int score1 = board1.getPlayer().getScore();
         int score2 = board2.getPlayer().getScore();
