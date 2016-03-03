@@ -92,7 +92,7 @@ public class Player implements Serializable
     @Override
     public String toString() 
     {
-        return "Player{" + "tileX=" + tileX + ", tileY=" + tileY + ", numJugador=" + numJugador + '}';
+        return tileX + "," + tileY + "," + numJugador;
     }
     
     
