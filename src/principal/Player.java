@@ -6,13 +6,14 @@
 package principal;
 
 import java.awt.Image;
+import java.io.Serializable;
 import javax.swing.ImageIcon;
 
 /**
  *
  * @author fred__000
  */
-public class Player 
+public class Player implements Serializable
 {
     //Fila y Columna.
     private int tileX, tileY;
