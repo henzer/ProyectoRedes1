@@ -112,10 +112,12 @@ public class BoardOponent extends JPanel
         
         if(player.getTileX()==39 && player.getTileY()==19){
             //Font para los mensajes
+            System.out.println("Ganador");
             System.out.println("");
             g.setColor(Color.yellow);
             g.setFont(font);
-            g.drawString(Message, 100,250);
+            
+            g.drawString("Winner", 130,250);
             repaint();
         }else{
             int x = temp.getTileX();
