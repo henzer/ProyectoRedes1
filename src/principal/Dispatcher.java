@@ -65,8 +65,11 @@ public class Dispatcher implements Runnable {
                         out.writeUTF(ServerCore.winner.getNumJugador() + "");
                         break;
                 }
+                try{
+                    line = in.readUTF();
+                }catch(Exception ex){
                 
-                line = in.readUTF();
+                }
             }
             
         } catch (IOException ex) {

@@ -59,10 +59,10 @@ public class ClientGame extends javax.swing.JFrame {
         else
             sizeCell = 5;
         //crea los tableros para cada jugador1
-        Board board1 = new Board(ClientCore.actualPlayer, sizeCell);
+        Board board1 = new Board(ClientCore.actualPlayer, 10);
         board1.setBounds(75, 100, 415, 440);
         
-        BoardOponent board2 = new BoardOponent(ClientCore.getPlayer(ClientCore.getIndexOponents()[0]), sizeCell);
+        BoardOponent board2 = new BoardOponent(ClientCore.getPlayer(ClientCore.getIndexOponents()[0]));
         board2.setBounds(565, 100, 415, 440);
         //Este es el hilo que se encargara de actualizar al oponente.
         Thread th = new Thread(new RefreshOponents(board2));

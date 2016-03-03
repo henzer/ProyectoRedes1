@@ -21,12 +21,10 @@ public class BoardOponent extends JPanel
     //Determinar si gano o no el juego.
     private boolean win = false;
     private Player temp;
-    private int sizeCell;
 
     //Constructor para inicializar todos los procesos.
-    public BoardOponent(Player p, int sizeCell)
+    public BoardOponent(Player p)
     {
-        this.sizeCell = sizeCell;
         map = new Map();
         player = p;
         temp = new Player(1, 1, p.getNumJugador());
@@ -84,25 +82,25 @@ public class BoardOponent extends JPanel
                     */
                     if(map.getMap(x, y)==0)
                     {
-                        g.drawImage(map.getGrass(), x*sizeCell, y*sizeCell, null);
+                        g.drawImage(map.getGrass(), x*10, y*10, null);
                     }
                     if(map.getMap(x, y)==1)
                     {
-                        g.drawImage(map.getWall(), x*sizeCell, y*sizeCell, null);
+                        g.drawImage(map.getWall(), x*10, y*10, null);
                     }
                     if(map.getMap(x, y)==4)
                     {
-                        g.drawImage(map.getStart(), x*sizeCell, y*sizeCell, null);
+                        g.drawImage(map.getStart(), x*10, y*10, null);
                     }
                     if(map.getMap(x, y)==5)
                     {
-                        g.drawImage(map.getFinish(), x*sizeCell, y*sizeCell, null);
+                        g.drawImage(map.getFinish(), x*10, y*10, null);
                     }
                 }
             } 
            
             //Dibuja el jugador.
-            g.drawImage(img.getImage(),player.getTileX()*sizeCell, player.getTileY()*sizeCell, null);
+            g.drawImage(img.getImage(),player.getTileX()*10, player.getTileY()*10, null);
         }else{
             System.out.println("Ganador");
             g.setColor(Color.yellow);
@@ -132,17 +130,17 @@ public class BoardOponent extends JPanel
             int y = temp.getTileY();
             if(player.getTileX()!=temp.getTileX() || player.getTileY()!=temp.getTileY()){
                 if(map.getMap(x, y)==0)
-                    g.drawImage(map.getGrass(), x*sizeCell, y*sizeCell, null);
+                    g.drawImage(map.getGrass(), x*10, y*10, null);
                 if(map.getMap(x, y)==4)
-                    g.drawImage(map.getStart(), x*sizeCell, y*sizeCell, null);
+                    g.drawImage(map.getStart(), x*10, y*10, null);
                 if(map.getMap(x, y)==5)
-                    g.drawImage(map.getFinish(), x*sizeCell, y*sizeCell, null);
+                    g.drawImage(map.getFinish(), x*10, y*10, null);
                 temp.setTileX(player.getTileX());
                 temp.setTileY(player.getTileY());
             }
 
             ImageIcon img = new ImageIcon("smile.png");
-            g.drawImage(img.getImage(),player.getTileX()*sizeCell, player.getTileY()*sizeCell, null);
+            g.drawImage(img.getImage(),player.getTileX()*10, player.getTileY()*10, null);
         }
     }
    
