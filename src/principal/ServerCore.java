@@ -30,6 +30,10 @@ public class ServerCore {
     public static Player getPlayer(int n){
         return positions.get(n);
     }
+    
+    public static void setPlayer(Player p){
+        positions.add(p);
+    }
 
     public static ArrayList<Thread> getThreads() {
         return threads;

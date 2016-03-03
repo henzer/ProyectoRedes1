@@ -1,6 +1,7 @@
 package principal;
 
 import java.io.BufferedReader;
+import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -23,15 +24,15 @@ public class Dispatcher implements Runnable {
     public void run() {
         System.out.println("Atendiendo");
         try {
-            ObjectInputStream in = new ObjectInputStream(socket.getInputStream());
-            ObjectOutputStream  out = new ObjectOutputStream(socket.getOutputStream());
-            String line = (String)in.readObject();
+            DataInputStream in = new DataInputStream(socket.getInputStream());
+            String line = in.readUTF();
+            DataOutputStream  out = new DataOutputStream(socket.getOutputStream());
             System.out.println(line);
             while(!line.equals("quit")){
                 switch(line){
                     case "ready":
                         if (ServerCore.actualPlayer <ServerCore.limitPlayer){
-                            out.writeObject(ServerCore.actualPlayer + "");
+                            out.writeUTF(ServerCore.actualPlayer+"");
                             ServerCore.actualPlayer++;
                             if(ServerCore.actualPlayer == ServerCore.limitPlayer){
                                 System.out.println("==");
@@ -42,38 +43,37 @@ public class Dispatcher implements Runnable {
                                 }
                                 System.out.println("");
                             }
-                            
-                            out = new ObjectOutputStream(socket.getOutputStream());
-                            out.writeObject("start");
+                            String s = "start";
+                            out.writeUTF(s+"");
                         }else{
                             System.out.println("Ya no hay cupo");
-                            out.writeObject("-1");
+                            out.writeUTF("-1");
                         }
                         break;
                     case "getSP":
                         System.out.println("getSP");
-                        int n  = Integer.parseInt(in.readObject().toString()); //Lee el jugador que se le esta solicitando.
-                        respond(ServerCore.getPlayer(n));
+                        int n  = Integer.parseInt(in.readUTF()); //Lee el jugador que se le esta solicitando.
+                        String s = ServerCore.getPlayer(n).toString();
+                        out.writeUTF(s + "");
                         
                         break;
                     case "setSP":
                         System.out.println("setSP");
-                        Player p = (Player)in.readObject();
-                        System.out.println("Player: " + p);
-                    
+                        int n1  = Integer.parseInt(in.readUTF());
+                        String[] sp = in.readUTF().split(",");
+                        Player p = new Player(Integer.parseInt(sp[0]), Integer.parseInt(sp[1]), Integer.parseInt(sp[2]));
+                        ServerCore.setPlayer(p);
                 }
-                line = (String)in.readObject();
+                line = in.readUTF();
             }
             
         } catch (IOException ex) {
             ex.printStackTrace();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(Dispatcher.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
     
-    public void respond(Object data) throws IOException{
-        ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
+    public void respond(ObjectOutputStream out, Object data) throws IOException{
+        out.reset();
         out.writeObject(data);
     }
     public void notifyAction(String action){
