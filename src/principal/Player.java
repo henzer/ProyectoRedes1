@@ -16,13 +16,14 @@ public class Player
 {
     //Fila y Columna.
     private int tileX, tileY;
+    
+    private int numJugador;
 
-    public Player(int tileX, int tileY) {
+    public Player(int tileX, int tileY, int numJugador) {
         this.tileX = tileX;
         this.tileY = tileY;
+        this.numJugador = numJugador;
     }
-    
-    
     
     public Player()
     {
@@ -43,6 +44,12 @@ public class Player
     public int getTileY()
     {
         return tileY;
+    }
+    
+    //Identificador del jugador.
+    public int getNumJugador()
+    {
+        return numJugador;
     }
     
     /*

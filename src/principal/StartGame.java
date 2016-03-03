@@ -5,6 +5,10 @@
  */
 package principal;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -13,7 +17,8 @@ import javax.swing.JTextField;
  */
 public class StartGame extends javax.swing.JFrame 
 {
-    private static String puerto;
+    private static String IP;
+    private final int PORT = 12345;
 
     /**
      * Creates new form StartGame
@@ -94,18 +99,35 @@ public class StartGame extends javax.swing.JFrame
         // TODO add your handling code here:
 
     }//GEN-LAST:event_jTFPortActionPerformed
-
+    
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        puerto=getTextPort(jTFPort);
-        System.out.println(puerto);
+        try 
+        {
+            // TODO add your handling code here:
+            IP=getTextPort(jTFPort);
+            Receiver receiver = new Receiver(IP, PORT);
+            Receiver.send("String", "ready");
+            String data;
+            data = Receiver.getData();
+            if(data.equals("-1"))
+            {
+                JOptionPane.showMessageDialog(null, "Servidor Lleno");
+            }
+            else 
+            {
+                
+            }
+        } 
+        catch (IOException ex) {
+            ex.printStackTrace();;
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     public String getTextPort(JTextField textField)
     {
-        String puerto;
-        puerto =textField.getText();
-        return puerto;
+        String IP;
+        IP =textField.getText();
+        return IP;
     }
     /**
      * @param args the command line arguments
