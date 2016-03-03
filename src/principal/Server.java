@@ -13,19 +13,11 @@ import java.util.ArrayList;
 
 public class Server {  
     public void start(int limit) throws IOException{
-        ServerSocket serverSocket = null;
+        ServerSocket serverSocket = new ServerSocket(12345);
         ServerCore sc = new ServerCore(limit);
-        
-        ServerSocketChannel ssChannel = ServerSocketChannel.open();
-        ssChannel.configureBlocking(true);
-        int port = 12345;
-        ssChannel.socket().bind(new InetSocketAddress(port));
-        System.out.println("Sender Start");
-        
-        
         while (true) {
-            SocketChannel sChannel = ssChannel.accept();
-            Thread t = new Thread(new Dispatcher(sChannel.socket()));
+            Socket connection = serverSocket.accept();
+            Thread t = new Thread(new Dispatcher(connection));
             ServerCore.addThread(t);
             t.start();
         }

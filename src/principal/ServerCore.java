@@ -8,6 +8,7 @@ public class ServerCore {
     public static ArrayList<Thread> threads = new ArrayList();
     public static int limitPlayer; //Numero de jugadores en el servidor.
     public static int actualPlayer; //Numero de jugadores en el servidor.
+    public static boolean shutdown = true;
     
     public ServerCore(int n){
         games = new ArrayList();
