@@ -22,6 +22,7 @@ public class ClientGame extends javax.swing.JFrame {
      */
     long startTime = System.currentTimeMillis();
     private final SimpleDateFormat date = new SimpleDateFormat("mm.ss.SSS");
+    private int numberPlayer;
     
     Timer timer = new Timer(1000, new ActionListener() {
 
@@ -30,7 +31,6 @@ public class ClientGame extends javax.swing.JFrame {
                 updateClock();
             }
         });
-    
     private void updateClock(){
             long elapsedTime = System.currentTimeMillis() - startTime;
             long elapsedSeconds = elapsedTime / 1000;
@@ -42,28 +42,41 @@ public class ClientGame extends javax.swing.JFrame {
     
     
     
-    public ClientGame() {
-        
+    public ClientGame(int n) {
         initComponents();
+        this.numberPlayer = n;
         timer.start();
-        //crea los tableros para cada jugador
-        Board board1 = new Board();
+        //Establece el titulo y los valores por defecto
+        this.setTitle("Maze Tortrix");
+        this.setSize(1050, 650);
+        this.setLocationRelativeTo(null);
+        this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
+
+        ClientCore.initClientCore(n, 2);
+        
+        
+        //crea los tableros para cada jugador1
+        Board board1 = new Board(ClientCore.actualPlayer);
         board1.setBounds(75, 100, 415, 440);
         
-        Board board2 = new Board();
+        BoardOponent board2 = new BoardOponent(ClientCore.getPlayer(ClientCore.getIndexOponents()[0]));
         board2.setBounds(565, 100, 415, 440);
         
         this.jPanel1.add(board1);
         this.jPanel1.add(board2);
+
+        //Este es el hilo que se encargara de actualizar al oponente.
+        //Thread th = new Thread(new RefreshOponents(board2));
+        //th.start();
         
-        int  score1 = board1.getPlayer().getScore();
+        int score1 = board1.getPlayer().getScore();
         int score2 = board2.getPlayer().getScore();
 
         this.lblScore1.setText("" + score1);
         this.lblScore2.setText("" + score2);
         
         this.setVisible(true);
-        
+        /*
         while(this.isVisible()){
             if(board1.isWin() || board2.isWin()){
                 
@@ -89,7 +102,7 @@ public class ClientGame extends javax.swing.JFrame {
                 this.setVisible(true);
             }
         }
-        
+        */
         
     }
 

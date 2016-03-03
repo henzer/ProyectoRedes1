@@ -51,19 +51,19 @@ public class Dispatcher implements Runnable {
                         }
                         break;
                     case "getSP":
-                        System.out.println("getSP");
+                        //System.out.println("getSP");
                         int n  = Integer.parseInt(in.readUTF()); //Lee el jugador que se le esta solicitando.
                         String s = ServerCore.getPlayer(n).toString();
-                        out.writeUTF(s + "");
+                        out.writeUTF(s);
                         
                         break;
                     case "setSP":
-                        System.out.println("setSP");
-                        int n1  = Integer.parseInt(in.readUTF());
                         String[] sp = in.readUTF().split(",");
                         Player p = new Player(Integer.parseInt(sp[0]), Integer.parseInt(sp[1]), Integer.parseInt(sp[2]));
-                        ServerCore.setPlayer(p);
+                        ServerCore.setPlayer(Integer.parseInt(sp[0]), Integer.parseInt(sp[1]), Integer.parseInt(sp[2]));
+                        break;
                 }
+                
                 line = in.readUTF();
             }
             

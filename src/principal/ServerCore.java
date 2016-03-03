@@ -17,22 +17,19 @@ public class ServerCore {
         //Dependiendo el numero de jugadores, así será el numero de laberintos.
         for(int i = 0; i<n; i++){ 
             games.add(new int[40][40]);
-            positions.add(new Player(0, 0, 0));
+            positions.add(new Player(1, 1, 0));
         }
     }
-    
-    public static void addPlayer(Player b){
-        positions.add(b);
-    }
-    
-    
-    
+
     public static Player getPlayer(int n){
         return positions.get(n);
     }
     
-    public static void setPlayer(Player p){
-        positions.add(p);
+    public static void setPlayer(int x, int y, int num){
+        Player p = positions.get(num);
+        p.setTileX(x);
+        p.setTileY(y);
+        p.setNumJugador(num);
     }
 
     public static ArrayList<Thread> getThreads() {
@@ -42,6 +39,15 @@ public class ServerCore {
     public static void addThread(Thread th) {
         ServerCore.threads.add(th);
     }
+
+    public static String _toString() {
+        String text = "";
+        for(Player p: positions){
+            text += p + "\t";
+        }
+        return text;
+    }
+    
     
     
     

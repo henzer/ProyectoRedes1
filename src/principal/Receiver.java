@@ -40,8 +40,6 @@ public class Receiver
         {
             String s = (String)data;
             out.writeUTF(s);
-            System.out.println("hola");
-            System.out.println("state "+s);
         }
         else if(type.equals("Player"))
         {

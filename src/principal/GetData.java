@@ -16,20 +16,19 @@ import java.util.logging.Logger;
  *
  * @author fred__000
  */
-public class RefreshPlayers implements Runnable
+public class GetData implements Runnable
 {
     private static Socket socket;
     private static DataInputStream in;
     private static DataOutputStream out;
     private int numJugador;
 
-    public RefreshPlayers(String IP, int port, int numJugador) 
+    public GetData(String IP, int port, int numJugador) 
     {
         try 
         {
             socket = new Socket(IP, port);
             this.numJugador = numJugador;
-            System.out.println("Constructor RP");
         } 
         catch (IOException ex) 
         {
@@ -40,16 +39,17 @@ public class RefreshPlayers implements Runnable
     @Override
     public void run() 
     {
-        try 
-        {
-            System.out.println("Run RP");
-            //in = new DataInputStream(socket.getInputStream());
+        try {
             out = new DataOutputStream(socket.getOutputStream());
-            
-            while(true)
-            {
-                out.writeUTF("getSP");
-                System.out.println(getDataPlayer(numJugador));;
+            while(true){
+                //Se obtienen las posiciones de todos los jugadores adversarios.
+                int[] indexes = ClientCore.getIndexOponents();
+                for(int i = 0; i<indexes.length; i++){
+                    out.writeUTF("getSP");
+                    Player p = getDataPlayer(indexes[i]); //Se solicita al servidor la posicion del adversario.
+                    System.out.println(ClientCore._toString());
+                    ClientCore.setPlayer(p); //Se almacena la posicion del jugador
+                }
             }
             
         } 

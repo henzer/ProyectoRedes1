@@ -6,7 +6,10 @@
 package principal;
 
 import java.awt.Image;
+import java.io.IOException;
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 /**
@@ -60,6 +63,15 @@ public class Player implements Serializable
     public void setScore(int score) {
         this.score = score;
     }
+
+    public void setTileX(int tileX) {
+        this.tileX = tileX;
+    }
+
+    public void setTileY(int tileY) {
+        this.tileY = tileY;
+    }
+    
     
     public int modifyScore(long time){
         return score = (int)time * 10;
@@ -87,6 +99,12 @@ public class Player implements Serializable
     {
         tileX += dx;
         tileY += dy;
+        try {
+            Receiver.send("String", "setSP");
+            Receiver.send("String", toString());
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
     }
 
     @Override

@@ -5,7 +5,7 @@ import java.awt.event.*;
 import javax.swing.*;
 
 //Esta clase es la que maneja dibuja el Laberinto y Maneja los movimientos del jugador.
-public class Board extends JPanel implements ActionListener
+public class BoardOponent extends JPanel implements ActionListener
 {
     //Variables a utilizar
     
@@ -22,12 +22,11 @@ public class Board extends JPanel implements ActionListener
     private boolean win = false;
 
     //Constructor para inicializar todos los procesos.
-    public Board(Player p)
+    public BoardOponent(Player p)
     {
         map = new Map();
         player = p;
-        
-        addKeyListener(new ActionL());
+
         setFocusable(true);
         //Para realizar movimientos a cada 25 milisegundos.
         timer = new Timer(5,this);
@@ -126,62 +125,5 @@ public class Board extends JPanel implements ActionListener
             repaint();
         } 
     }
-    
-    //Clase para determinar los movimientos con el Teclado.
-    public class ActionL extends KeyAdapter
-    {
-        @Override
-        public void keyPressed(KeyEvent e)
-        {
-            int keycode = e.getKeyCode();
-            //Flecha Arriba.
-            if(keycode == KeyEvent.VK_UP)
-            {
-                //Validacion para que no se mueva a una pared.
-                if(map.getMap(player.getTileX(),player.getTileY()-1)!=1)
-                {
-                    player.move(0, -1);
-                }
-            }
-            //Flecha Abajo
-            if(keycode == KeyEvent.VK_DOWN)
-            {
-                //Validacion para que no se mueva a una pared.
-                if(map.getMap(player.getTileX(),player.getTileY()+1)!=1)
-                {
-                    player.move(0, 1);
-                }
-            }
-            //Flecha Izquierda.
-            if(keycode == KeyEvent.VK_LEFT)
-            {
-                //Validacion para que no se mueva a una pared.
-                if(map.getMap(player.getTileX()-1,player.getTileY())!=1)
-                {
-                    player.move(-1, 0);
-                }
-            }
-            //Flecha Derecha.
-            if(keycode == KeyEvent.VK_RIGHT)
-            {
-                //Validacion para que no se mueva a una pared.
-                if(map.getMap(player.getTileX()+1,player.getTileY())!=1)
-                {
-                    player.move(1, 0);
-                }
-            }
-        }
-
-        @Override
-        public void keyReleased(KeyEvent e) 
-        {
-            
-        }
-
-        @Override
-        public void keyTyped(KeyEvent e)
-        {
-            
-        }
-    }
+   
 }

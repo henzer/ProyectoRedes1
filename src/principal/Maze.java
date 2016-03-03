@@ -12,7 +12,7 @@ public class Maze
     
     public Maze()
     {
-        ClientGame cg = new ClientGame();
+        ClientGame cg = new ClientGame(0);
         
         cg.setTitle("Maze Tortrix");
         cg.setSize(1355, 740);

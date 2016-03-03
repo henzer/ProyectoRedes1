@@ -40,6 +40,7 @@ public class StartGame extends javax.swing.JFrame
         jLabel2 = new javax.swing.JLabel();
         JTextFieldIP = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -60,6 +61,13 @@ public class StartGame extends javax.swing.JFrame
             }
         });
 
+        jButton2.setText("Prueba");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -75,8 +83,10 @@ public class StartGame extends javax.swing.JFrame
                             .addComponent(jLabel2)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(76, 76, 76)
-                        .addComponent(jButton1)))
-                .addContainerGap(49, Short.MAX_VALUE))
+                        .addComponent(jButton1)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2)))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -88,7 +98,9 @@ public class StartGame extends javax.swing.JFrame
                     .addComponent(JTextFieldIP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
-                .addComponent(jButton1)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
@@ -118,7 +130,14 @@ public class StartGame extends javax.swing.JFrame
                 System.out.println(num+" Paso!");
                 data = (String)Receiver.getData();
                 System.out.println(data);
-                Thread th = new Thread(new RefreshPlayers(IP, PORT,0));
+                
+                this.setVisible(false);
+                //Inicia el juego
+                ClientGame cg = new ClientGame(num);
+                cg.setVisible(true);
+                //JOptionPane.showMessageDialog(null, "N: " + num);
+                //Se inicia el thread encargado de obtener la informacion de los oponentes.
+                Thread th = new Thread(new GetData(IP, PORT,0));
                 th.start();
                 
             }
@@ -127,6 +146,11 @@ public class StartGame extends javax.swing.JFrame
             ex.printStackTrace();;
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        ClientGame cg = new ClientGame(0);
+        cg.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     public String getTextIp(JTextField textField)
     {
@@ -173,6 +197,7 @@ public class StartGame extends javax.swing.JFrame
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField JTextFieldIP;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     // End of variables declaration//GEN-END:variables
