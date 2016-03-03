@@ -47,7 +47,7 @@ public class GetData implements Runnable
                 for(int i = 0; i<indexes.length; i++){
                     out.writeUTF("getSP");
                     Player p = getDataPlayer(indexes[i]); //Se solicita al servidor la posicion del adversario.
-                    System.out.println(ClientCore._toString());
+                    //System.out.println(ClientCore._toString());
                     ClientCore.setPlayer(p); //Se almacena la posicion del jugador
                 }
             }

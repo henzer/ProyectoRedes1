@@ -105,6 +105,8 @@ public class Player implements Serializable
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+        
+        
     }
 
     @Override

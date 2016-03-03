@@ -2,10 +2,13 @@ package principal;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 //Esta clase es la que maneja dibuja el Laberinto y Maneja los movimientos del jugador.
-public class Board extends JPanel implements ActionListener
+public class Board extends JPanel
 {
     //Variables a utilizar
     
@@ -33,8 +36,8 @@ public class Board extends JPanel implements ActionListener
         addKeyListener(new ActionL());
         setFocusable(true);
         //Para realizar movimientos a cada 25 milisegundos.
-        timer = new Timer(5,this);
-        timer.start();
+        //timer = new Timer(5,this);
+       //timer.start();
     }
 
     public Map getMap() {
@@ -69,17 +72,6 @@ public class Board extends JPanel implements ActionListener
 
     public void setPlayer(Player player) {
         this.player = player;
-    }
-    
-    //Cada vez que se realice un movimiento.
-    public void actionPerformed(ActionEvent e)
-    {
-        if(map.getMap(player.getTileX(), player.getTileY())== 5)
-        {
-            Message = "Winner";
-            win = true;
-        }
-        repaint();
     }
     
     //Metodo para crear las graficas y la pantalla.
@@ -132,11 +124,22 @@ public class Board extends JPanel implements ActionListener
         
         if(win)
         {
-            //Font para los mensajes.
-            g.setColor(Color.yellow);
-            g.setFont(font);
-            g.drawString(Message, 100,250);
-            repaint();
+            try {
+                Receiver.send("String", "whoIsWinner");
+                int num = Integer.parseInt((String)Receiver.getData());
+                if(num==this.player.getNumJugador()){
+                    //Font para los mensajes.
+                    g.setColor(Color.yellow);
+                    g.setFont(font);
+                    g.drawString(Message, 100,250);
+                    repaint();
+                }else{
+                    JOptionPane.showMessageDialog(this, "No se quien es el ganador");
+                }
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+            
         } 
     }
     
@@ -146,6 +149,8 @@ public class Board extends JPanel implements ActionListener
         @Override
         public void keyPressed(KeyEvent e)
         {
+            if(win)return;
+            
             int keycode = e.getKeyCode();
             //Flecha Arriba.
             if(keycode == KeyEvent.VK_UP)
@@ -183,6 +188,12 @@ public class Board extends JPanel implements ActionListener
                     player.move(1, 0);
                 }
             }
+            if(map.getMap(player.getTileX(), player.getTileY())== 5){
+                Message = "Winner";
+                win = true;
+            }
+            
+            repaint();
         }
 
         @Override

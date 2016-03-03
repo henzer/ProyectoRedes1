@@ -28,13 +28,12 @@ public class ServerCore {
     
     public static void setPlayer(int x, int y, int num){
         Player p = positions.get(num);
-        if(p.getTileX()==39 && p.getTileY()==19){
+        if(x==39 && y==19){
             winner = p;
-        }else{
-            p.setTileX(x);
-            p.setTileY(y);
-            p.setNumJugador(num);
         }
+        p.setTileX(x);
+        p.setTileY(y);
+        p.setNumJugador(num);
     }
 
     public static ArrayList<Thread> getThreads() {
