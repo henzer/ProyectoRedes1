@@ -49,7 +49,14 @@ public class Board extends JPanel implements ActionListener
     public void setWin(boolean win) {
         this.win = win;
     }
-    
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
+    }
     
     //Cada vez que se realice un movimiento.
     public void actionPerformed(ActionEvent e)

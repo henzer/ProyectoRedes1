@@ -34,6 +34,7 @@ public class ClientGame extends javax.swing.JFrame {
     private void updateClock(){
             long elapsedTime = System.currentTimeMillis() - startTime;
             long elapsedSeconds = elapsedTime / 1000;
+            long elapsedSeconds1 = elapsedSeconds;
             long elapsedMinutes = elapsedSeconds / 60;
             lblTime.setText(elapsedMinutes + " : " + elapsedSeconds);
         }
@@ -55,10 +56,18 @@ public class ClientGame extends javax.swing.JFrame {
         this.jPanel1.add(board1);
         this.jPanel1.add(board2);
         
+        int  score1 = board1.getPlayer().getScore();
+        int score2 = board2.getPlayer().getScore();
+
+        this.lblScore1.setText("" + score1);
+        this.lblScore2.setText("" + score2);
+        
         this.setVisible(true);
         
         while(this.isVisible()){
             if(board1.isWin() || board2.isWin()){
+                
+                
                 this.jPanel1.remove(board1);
                 this.jPanel1.remove(board2);
                 

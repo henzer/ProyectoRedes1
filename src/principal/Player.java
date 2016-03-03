@@ -19,11 +19,14 @@ public class Player implements Serializable
     private int tileX, tileY;
     
     private int numJugador;
+    
+    private int score;
 
     public Player(int tileX, int tileY, int numJugador) {
         this.tileX = tileX;
         this.tileY = tileY;
         this.numJugador = numJugador;
+        this.score = 0;
     }
     
     public Player()
@@ -33,6 +36,8 @@ public class Player implements Serializable
         //Cantidad de Columnas o Filas entre las que se mueve.
         tileX = 1;
         tileY = 1;
+        
+        score = 0;
     }
     
     //Devuelve la Posicion en X.
@@ -46,7 +51,19 @@ public class Player implements Serializable
     {
         return tileY;
     }
+
+    //Devuelve el punteo del jugador
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
     
+    public int modifyScore(long time){
+        return score = (int)time * 10;
+    }
 
     public void setNumJugador(int numJugador) 
     {
