@@ -40,11 +40,33 @@ public class Map
         img = new ImageIcon("finish.png");
         finish = img.getImage();
         //Funciones para cargar el archivo
-        openFile();
+        openFile("matrizLaberinto2.txt");
         readFile();
         closeFile();
     }
     
+    public Map(String nameFile)
+    {
+        //Imagen de la grama.
+        ImageIcon img = new ImageIcon("grass.png");
+        grass = img.getImage();
+        
+        //Imagen de la Pared.
+        img = new ImageIcon("wall.png");
+        wall = img.getImage();
+        
+        //Imagen de la Pared.
+        img = new ImageIcon("start.png");
+        start = img.getImage();
+        
+        //Imagen de Fin.
+        img = new ImageIcon("finish.png");
+        finish = img.getImage();
+        //Funciones para cargar el archivo
+        openFile(nameFile);
+        readFile();
+        closeFile();
+    }
     //Metodo para devolver la imagen de Grama.
     public Image getGrass()
     {
@@ -77,11 +99,12 @@ public class Map
     }
 
     //Metodo para abrir el archivo.
-    private void openFile() 
+    private void openFile(String nameFile) 
     {
         try 
         {
-            map = new Scanner(new File("matrizLaberinto.txt"));
+            map = new Scanner(new File(nameFile));
+            
         } 
         catch (Exception e) 
         {

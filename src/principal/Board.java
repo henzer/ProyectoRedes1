@@ -20,7 +20,7 @@ public class Board extends JPanel implements ActionListener
     private Font font = new Font("Sans Serif",Font.BOLD, 48);
     //Determinar si gano o no el juego.
     private boolean win = false;
-    
+
     //Constructor para inicializar todos los procesos.
     public Board()
     {
@@ -33,6 +33,23 @@ public class Board extends JPanel implements ActionListener
         timer = new Timer(5,this);
         timer.start();
     }
+
+    public Map getMap() {
+        return map;
+    }
+
+    public void setMap(String nameFile) {
+        this.map = new Map(nameFile);
+    }
+    
+    public boolean isWin() {
+        return win;
+    }
+
+    public void setWin(boolean win) {
+        this.win = win;
+    }
+    
     
     //Cada vez que se realice un movimiento.
     public void actionPerformed(ActionEvent e)
@@ -70,11 +87,11 @@ public class Board extends JPanel implements ActionListener
                     * 4 = origen
                     * 5 = destino
                     */
-                    if(map.getMap(x, y)==1)
+                    if(map.getMap(x, y)==0)
                     {
                         g.drawImage(map.getGrass(), x*10, y*10, null);
                     }
-                    if(map.getMap(x, y)==0)
+                    if(map.getMap(x, y)==1)
                     {
                         g.drawImage(map.getWall(), x*10, y*10, null);
                     }
@@ -99,6 +116,7 @@ public class Board extends JPanel implements ActionListener
             g.setColor(Color.yellow);
             g.setFont(font);
             g.drawString(Message, 100,250);
+            repaint();
         } 
     }
     
@@ -113,7 +131,7 @@ public class Board extends JPanel implements ActionListener
             if(keycode == KeyEvent.VK_UP)
             {
                 //Validacion para que no se mueva a una pared.
-                if(map.getMap(player.getTileX(),player.getTileY()-1)!=0)
+                if(map.getMap(player.getTileX(),player.getTileY()-1)!=1)
                 {
                     player.move(0, -1);
                 }
@@ -122,7 +140,7 @@ public class Board extends JPanel implements ActionListener
             if(keycode == KeyEvent.VK_DOWN)
             {
                 //Validacion para que no se mueva a una pared.
-                if(map.getMap(player.getTileX(),player.getTileY()+1)!=0)
+                if(map.getMap(player.getTileX(),player.getTileY()+1)!=1)
                 {
                     player.move(0, 1);
                 }
@@ -131,7 +149,7 @@ public class Board extends JPanel implements ActionListener
             if(keycode == KeyEvent.VK_LEFT)
             {
                 //Validacion para que no se mueva a una pared.
-                if(map.getMap(player.getTileX()-1,player.getTileY())!=0)
+                if(map.getMap(player.getTileX()-1,player.getTileY())!=1)
                 {
                     player.move(-1, 0);
                 }
@@ -140,7 +158,7 @@ public class Board extends JPanel implements ActionListener
             if(keycode == KeyEvent.VK_RIGHT)
             {
                 //Validacion para que no se mueva a una pared.
-                if(map.getMap(player.getTileX()+1,player.getTileY())!=0)
+                if(map.getMap(player.getTileX()+1,player.getTileY())!=1)
                 {
                     player.move(1, 0);
                 }

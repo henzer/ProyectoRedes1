@@ -23,7 +23,7 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" pref="881" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="0" pref="1034" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -43,77 +43,53 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
+              <Group type="102" attributes="0">
                   <EmptySpace min="-2" pref="146" max="-2" attributes="0"/>
                   <Component id="label2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="354" max="32767" attributes="0"/>
                   <Component id="label1" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace min="-2" pref="174" max="-2" attributes="0"/>
+                  <EmptySpace min="174" pref="174" max="-2" attributes="0"/>
               </Group>
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" attributes="0">
-                          <Component id="label3" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="label6" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
-                          <Component id="label7" min="-2" pref="103" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="label4" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="label5" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="69" max="-2" attributes="0"/>
-                      </Group>
-                      <Group type="102" attributes="0">
-                          <Component id="canvas2" min="-2" pref="400" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="canvas1" min="-2" pref="400" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-                      </Group>
-                  </Group>
+                  <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                  <Component id="label3" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="lblScore1" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="39" max="-2" attributes="0"/>
+                  <Component id="lblTime1" min="-2" pref="103" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="lblTime" min="-2" pref="103" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
+                  <Component id="label4" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="lblScore2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="1" attributes="0">
-                  <EmptySpace pref="28" max="32767" attributes="0"/>
-                  <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="label7" min="-2" pref="41" max="-2" attributes="0"/>
-                      <Group type="102" alignment="1" attributes="0">
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="label2" alignment="1" min="-2" max="-2" attributes="0"/>
-                              <Component id="label1" alignment="1" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="canvas1" min="-2" pref="400" max="-2" attributes="0"/>
-                              <Component id="canvas2" min="-2" pref="400" max="-2" attributes="0"/>
-                          </Group>
-                          <EmptySpace min="-2" pref="24" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="label4" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="label5" alignment="1" max="32767" attributes="0"/>
-                              </Group>
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="label6" alignment="1" max="32767" attributes="0"/>
-                                  <Component id="label3" alignment="1" max="32767" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace pref="65" max="32767" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="label2" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Component id="label1" alignment="1" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="432" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Component id="lblScore1" min="-2" max="-2" attributes="0"/>
+                      <Component id="label3" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblTime1" alignment="0" min="-2" pref="41" max="-2" attributes="0"/>
+                      <Component id="lblTime" alignment="0" min="-2" pref="41" max="-2" attributes="0"/>
+                      <Component id="label4" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="lblScore2" min="-2" max="-2" attributes="0"/>
+                  </Group>
+                  <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="java.awt.Canvas" name="canvas2">
-        </Component>
-        <Component class="java.awt.Canvas" name="canvas1">
-        </Component>
         <Component class="java.awt.Label" name="label1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
@@ -149,7 +125,7 @@
             <Property name="text" type="java.lang.String" value="Score:"/>
           </Properties>
         </Component>
-        <Component class="java.awt.Label" name="label5">
+        <Component class="java.awt.Label" name="lblScore2">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Lucida Console" size="36" style="0"/>
@@ -157,7 +133,7 @@
             <Property name="text" type="java.lang.String" value="45 pts"/>
           </Properties>
         </Component>
-        <Component class="java.awt.Label" name="label6">
+        <Component class="java.awt.Label" name="lblScore1">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Lucida Console" size="36" style="0"/>
@@ -165,12 +141,20 @@
             <Property name="text" type="java.lang.String" value="50 pts"/>
           </Properties>
         </Component>
-        <Component class="java.awt.Label" name="label7">
+        <Component class="java.awt.Label" name="lblTime">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Lucida Console" size="24" style="0"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Time"/>
+          </Properties>
+        </Component>
+        <Component class="java.awt.Label" name="lblTime1">
+          <Properties>
+            <Property name="alignment" type="int" value="1"/>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Lucida Console" size="24" style="0"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Time:"/>
           </Properties>
         </Component>
       </SubComponents>
