@@ -120,20 +120,21 @@ public class StartGame extends javax.swing.JFrame
             Receiver.initReceiver(IP, PORT);
             Receiver.send("String", "ready");
             String data = (String)Receiver.getData();
-            if(data.equals("-1"))
+            int num = Integer.parseInt(data.split(",")[0]);
+            int limit = Integer.parseInt(data.split(",")[0]);
+            if(num==-1)
             {
                 JOptionPane.showMessageDialog(null, "Servidor Lleno");
             }
            else 
             {
-                int num = Integer.parseInt(data);
                 System.out.println(num+" Paso!");
                 data = (String)Receiver.getData();
                 System.out.println(data);
                 
                 this.setVisible(false);
                 //Inicia el juego
-                ClientGame cg = new ClientGame(num);
+                ClientGame cg = new ClientGame(num, limit);
                 cg.setVisible(true);
                 //JOptionPane.showMessageDialog(null, "N: " + num);
                 //Se inicia el thread encargado de obtener la informacion de los oponentes.
@@ -148,7 +149,7 @@ public class StartGame extends javax.swing.JFrame
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        ClientGame cg = new ClientGame(0);
+        ClientGame cg = new ClientGame(0,2);
         cg.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 

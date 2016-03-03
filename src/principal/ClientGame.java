@@ -32,17 +32,17 @@ public class ClientGame extends javax.swing.JFrame {
             }
         });
     private void updateClock(){
-            long elapsedTime = System.currentTimeMillis() - startTime;
-            long elapsedSeconds = elapsedTime / 1000;
-            long elapsedSeconds1 = elapsedSeconds;
-            long elapsedMinutes = elapsedSeconds / 60;
-            lblTime.setText(elapsedMinutes + " : " + elapsedSeconds);
-        }
+        long elapsedTime = System.currentTimeMillis() - startTime;
+        long elapsedSeconds = elapsedTime / 1000;
+        long elapsedSeconds1 = elapsedSeconds%60;
+        long elapsedMinutes = elapsedSeconds / 60;
+        lblTime.setText(elapsedMinutes + " : " + elapsedSeconds1);
+    }
     
     
     
     
-    public ClientGame(int n) {
+    public ClientGame(int n, int limit) {
         initComponents();
         this.numberPlayer = n;
         timer.start();

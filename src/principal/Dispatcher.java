@@ -32,7 +32,7 @@ public class Dispatcher implements Runnable {
                 switch(line){
                     case "ready":
                         if (ServerCore.actualPlayer <ServerCore.limitPlayer){
-                            out.writeUTF(ServerCore.actualPlayer+"");
+                            out.writeUTF(ServerCore.actualPlayer+"," + ServerCore.limitPlayer);
                             ServerCore.actualPlayer++;
                             if(ServerCore.actualPlayer == ServerCore.limitPlayer){
                                 System.out.println("==");
