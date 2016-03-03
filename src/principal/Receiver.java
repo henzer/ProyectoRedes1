@@ -4,8 +4,8 @@ import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.net.Socket;
 
 public class Receiver
@@ -13,8 +13,8 @@ public class Receiver
     public static String IP;
     public static int PORT;
     private static Socket socket;
-    private static ObjectInputStream in;
-    private static ObjectOutputStream out;
+    private static DataInputStream in;
+    private static DataOutputStream out;
     private static BufferedReader read;
 
     //Constructor de la clase, recibe la IP y el puerto de destino
@@ -25,7 +25,7 @@ public class Receiver
         try 
         {
             socket = new Socket(IP, PORT);            
-            out = new ObjectOutputStream(socket.getOutputStream());
+            out = new DataOutputStream(socket.getOutputStream());
             read = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         } 
         catch (IOException ex) 
@@ -39,14 +39,14 @@ public class Receiver
         if(type.equals("String"))
         {
             String s = (String)data;
-            out.writeObject(s);
+            out.writeUTF(s);
             System.out.println("hola");
             System.out.println("state "+s);
         }
         else if(type.equals("Player"))
         {
             Player p = (Player)data;
-            //out.writeObject(p);
+            //out.writeBytes(p);
         }
     }
     
@@ -58,8 +58,8 @@ public class Receiver
         {
             try
             {
-                in = new ObjectInputStream(socket.getInputStream());
-                return in.readObject();
+                in = new DataInputStream(socket.getInputStream());
+                return in.readUTF();
             }
             catch(Exception ex)
             {
@@ -73,8 +73,8 @@ public class Receiver
     public static Player getDataPlayer(int n) throws IOException, ClassNotFoundException
     {
         out.writeInt(n);
-        Player player = (Player)in.readObject();
-        return player;
+        //Player player = (Player)in.readUTF();
+        return null;
     }
     
 /*
@@ -83,16 +83,16 @@ public class Receiver
             SocketChannel sChannel = SocketChannel.open();
             sChannel.configureBlocking(true);
             if (sChannel.connect(new InetSocketAddress(IP, PORT))) {
-                ObjectInputStream in = new ObjectInputStream(sChannel.socket().getInputStream());
+                DataInputStream in = new DataInputStream(sChannel.socket().getInputStream());
                 DataOutputStream  out = new DataOutputStream(sChannel.socket().getOutputStream());
                 Player player;
                 try {
                     out.writeBytes("1\n");
-                    player = (Player)in.readObject();
+                    player = (Player)in.readUTF();
                     while(player!=null){
                         System.out.println(player);
                         out.writeBytes("1\n");
-                        player = (Player)in.readObject();
+                        player = (Player)in.readUTF();
                     }
                     
                 } catch (ClassNotFoundException ex) {

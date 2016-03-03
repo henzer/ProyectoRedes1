@@ -6,8 +6,8 @@
 package principal;
 
 import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.net.Socket;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,8 +19,8 @@ import java.util.logging.Logger;
 public class RefreshPlayers implements Runnable
 {
     private static Socket socket;
-    private static ObjectInputStream in;
-    private static ObjectOutputStream out;
+    private static DataInputStream in;
+    private static DataOutputStream out;
     private int numJugador;
 
     public RefreshPlayers(String IP, int port, int numJugador) 
@@ -43,14 +43,12 @@ public class RefreshPlayers implements Runnable
         try 
         {
             System.out.println("Run RP");
-            //in = new ObjectInputStream(socket.getInputStream());
-            out = new ObjectOutputStream(socket.getOutputStream());
+            //in = new DataInputStream(socket.getInputStream());
+            out = new DataOutputStream(socket.getOutputStream());
             
             while(true)
             {
-                System.out.println("Primero");
-                out.writeObject("getSP");
-                System.out.println("Segundo");
+                out.writeUTF("getSP");
                 System.out.println(getDataPlayer(numJugador));;
             }
             
@@ -58,17 +56,19 @@ public class RefreshPlayers implements Runnable
         catch (IOException ex) 
         {
             ex.printStackTrace();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(RefreshPlayers.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) 
+        {
+            ex.printStackTrace();
         }
     }   
     
     //Metodo para obtener la informacion del jugador especificado en n.
     public static Player getDataPlayer(int n) throws IOException, ClassNotFoundException
     {
-        in = new ObjectInputStream(socket.getInputStream());
-        out.writeObject(n+"");
-        Player player = (Player)in.readObject();
-        return player;
+        in = new DataInputStream(socket.getInputStream());
+        out.writeUTF(n+"");
+        String play = (String)in.readUTF();
+        String nuevo[]= play.split(",");
+        return new Player(Integer.parseInt(nuevo[0]),Integer.parseInt(nuevo[1]),Integer.parseInt(nuevo[2]));
     }
 }
