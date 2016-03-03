@@ -8,6 +8,7 @@ public class ClientCore {
     public static ArrayList<int[][]> boards = new ArrayList();
     public static ArrayList<Player> positions = new ArrayList();
     public static Player actualPlayer = new Player();
+    public static Player winner;
 
     public static void initClientCore(int number, int limit){
         for(int i=0; i<limit;i++){
@@ -28,9 +29,13 @@ public class ClientCore {
     
     public static void setPlayer(Player pl){
         Player p = positions.get(pl.getNumJugador());
-        p.setTileX(pl.getTileX());
-        p.setTileY(pl.getTileY());
-        p.setNumJugador(pl.getNumJugador());
+        if(p.getTileX()==39 && p.getTileY()==19){
+            winner = p;
+        }else{
+            p.setTileX(pl.getTileX());
+            p.setTileY(pl.getTileY());
+            p.setNumJugador(pl.getNumJugador());
+        }
     }
     
     public static int[] getIndexOponents(){

@@ -9,6 +9,7 @@ public class ServerCore {
     public static int limitPlayer; //Numero de jugadores en el servidor.
     public static int actualPlayer; //Numero de jugadores en el servidor.
     public static boolean shutdown = true;
+    public static Player winner;
     
     public ServerCore(int n){
         games = new ArrayList();
@@ -27,9 +28,13 @@ public class ServerCore {
     
     public static void setPlayer(int x, int y, int num){
         Player p = positions.get(num);
-        p.setTileX(x);
-        p.setTileY(y);
-        p.setNumJugador(num);
+        if(p.getTileX()==39 && p.getTileY()==19){
+            winner = p;
+        }else{
+            p.setTileX(x);
+            p.setTileY(y);
+            p.setNumJugador(num);
+        }
     }
 
     public static ArrayList<Thread> getThreads() {

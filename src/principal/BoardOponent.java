@@ -103,33 +103,37 @@ public class BoardOponent extends JPanel
             g.drawImage(img.getImage(),player.getTileX()*10, player.getTileY()*10, null);
         }
         
-        if(win)
-        {
-            //Font para los mensajes.
-            g.setColor(Color.yellow);
-            g.setFont(font);
-            g.drawString(Message, 100,250);
-            repaint();
-        } 
+        
     }
     
     public void paintPlayer(){
         Graphics g = this.getGraphics();
-        int x = temp.getTileX();
-        int y = temp.getTileY();
-        if(player.getTileX()!=temp.getTileX() || player.getTileY()!=temp.getTileY()){
-            if(map.getMap(x, y)==0)
-                g.drawImage(map.getGrass(), x*10, y*10, null);
-            if(map.getMap(x, y)==4)
-                g.drawImage(map.getStart(), x*10, y*10, null);
-            if(map.getMap(x, y)==5)
-                g.drawImage(map.getFinish(), x*10, y*10, null);
-            temp.setTileX(player.getTileX());
-            temp.setTileY(player.getTileY());
-        }
-        ImageIcon img = new ImageIcon("smile.png");
-        g.drawImage(img.getImage(),player.getTileX()*10, player.getTileY()*10, null);
+        //Verifica si ya gano el jugador.
         
+        if(player.getTileX()==39 && player.getTileY()==19){
+            //Font para los mensajes
+            System.out.println("");
+            g.setColor(Color.yellow);
+            g.setFont(font);
+            g.drawString(Message, 100,250);
+            repaint();
+        }else{
+            int x = temp.getTileX();
+            int y = temp.getTileY();
+            if(player.getTileX()!=temp.getTileX() || player.getTileY()!=temp.getTileY()){
+                if(map.getMap(x, y)==0)
+                    g.drawImage(map.getGrass(), x*10, y*10, null);
+                if(map.getMap(x, y)==4)
+                    g.drawImage(map.getStart(), x*10, y*10, null);
+                if(map.getMap(x, y)==5)
+                    g.drawImage(map.getFinish(), x*10, y*10, null);
+                temp.setTileX(player.getTileX());
+                temp.setTileY(player.getTileY());
+            }
+
+            ImageIcon img = new ImageIcon("smile.png");
+            g.drawImage(img.getImage(),player.getTileX()*10, player.getTileY()*10, null);
+        }
     }
    
 }
