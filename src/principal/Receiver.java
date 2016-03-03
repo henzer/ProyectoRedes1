@@ -3,11 +3,7 @@ package principal;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.nio.channels.SocketChannel;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 public class Receiver{
     private String IP;
@@ -40,11 +36,14 @@ public class Receiver{
         }
     }
     
+    //Metodo para obtener Strings del servidor
     public static String getData() throws IOException{
         return in.readUTF();
     }
     
-    public static Player getDataPlayer() throws IOException, ClassNotFoundException{
+    //Metodo para obtener la informacion del jugador especificado en n.
+    public static Player getDataPlayer(int n) throws IOException, ClassNotFoundException{
+        out.writeInt(n);
         Player player = (Player)in.readObject();
         return player;
     }
