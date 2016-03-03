@@ -134,7 +134,7 @@ public class StartGame extends javax.swing.JFrame
                 
                 this.setVisible(false);
                 //Inicia el juego
-                ClientGame cg = new ClientGame(num, limit);
+                ClientGame cg = new ClientGame(num, 2);
                 cg.setVisible(true);
                 //JOptionPane.showMessageDialog(null, "N: " + num);
                 //Se inicia el thread encargado de obtener la informacion de los oponentes.
