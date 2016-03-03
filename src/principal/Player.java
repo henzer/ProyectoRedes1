@@ -6,23 +6,25 @@
 package principal;
 
 import java.awt.Image;
+import java.io.Serializable;
 import javax.swing.ImageIcon;
 
 /**
  *
  * @author fred__000
  */
-public class Player 
+public class Player implements Serializable
 {
     //Fila y Columna.
     private int tileX, tileY;
+    
+    private int numJugador;
 
-    public Player(int tileX, int tileY) {
+    public Player(int tileX, int tileY, int numJugador) {
         this.tileX = tileX;
         this.tileY = tileY;
+        this.numJugador = numJugador;
     }
-    
-    
     
     public Player()
     {
@@ -45,6 +47,18 @@ public class Player
         return tileY;
     }
     
+
+    public void setNumJugador(int numJugador) 
+    {
+        this.numJugador = numJugador;
+    }
+    
+    //Identificador del jugador.
+    public int getNumJugador()
+    {
+        return numJugador;
+    }
+    
     /*
     * Metodo que indica la direccion en la que se movera el jugador.
     * X=-1 --> Izquierda
@@ -57,5 +71,13 @@ public class Player
         tileX += dx;
         tileY += dy;
     }
+
+    @Override
+    public String toString() 
+    {
+        return "Player{" + "tileX=" + tileX + ", tileY=" + tileY + ", numJugador=" + numJugador + '}';
+    }
+    
+    
     
 }

@@ -103,8 +103,7 @@ public class Map
     {
         try 
         {
-            map = new Scanner(new File(nameFile));
-            
+            map = new Scanner(new File("matrizLaberinto2.txt"));
         } 
         catch (Exception e) 
         {

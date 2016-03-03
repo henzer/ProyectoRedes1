@@ -12,23 +12,13 @@ import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
 
 public class Server {  
-    public void start() throws IOException{
-        ServerSocket serverSocket = null;
-        ServerCore sc = new ServerCore(2);
-        
-        ServerCore.addPlayer(new Player(100, 100));
-        ServerCore.addPlayer(new Player(0, 0));
-        
-        ServerSocketChannel ssChannel = ServerSocketChannel.open();
-        ssChannel.configureBlocking(true);
-        int port = 12345;
-        ssChannel.socket().bind(new InetSocketAddress(port));
-        System.out.println("Sender Start");
-        
-        
+    public void start(int limit) throws IOException{
+        ServerSocket serverSocket = new ServerSocket(12345);
+        ServerCore sc = new ServerCore(limit);
         while (true) {
-            SocketChannel sChannel = ssChannel.accept();
-            Thread t = new Thread(new Dispatcher(sChannel.socket()));
+            Socket connection = serverSocket.accept();
+            Thread t = new Thread(new Dispatcher(connection));
+            ServerCore.addThread(t);
             t.start();
         }
     }
