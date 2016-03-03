@@ -46,6 +46,12 @@ public class Player
         return tileY;
     }
     
+
+    public void setNumJugador(int numJugador) 
+    {
+        this.numJugador = numJugador;
+    }
+    
     //Identificador del jugador.
     public int getNumJugador()
     {
@@ -64,5 +70,13 @@ public class Player
         tileX += dx;
         tileY += dy;
     }
+
+    @Override
+    public String toString() 
+    {
+        return "Player{" + "tileX=" + tileX + ", tileY=" + tileY + ", numJugador=" + numJugador + '}';
+    }
+    
+    
     
 }

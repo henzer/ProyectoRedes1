@@ -38,7 +38,7 @@ public class StartGame extends javax.swing.JFrame
 
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTFPort = new javax.swing.JTextField();
+        JTextFieldIP = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -47,9 +47,9 @@ public class StartGame extends javax.swing.JFrame
 
         jLabel2.setText("Maze Tortix");
 
-        jTFPort.addActionListener(new java.awt.event.ActionListener() {
+        JTextFieldIP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTFPortActionPerformed(evt);
+                JTextFieldIPActionPerformed(evt);
             }
         });
 
@@ -71,7 +71,7 @@ public class StartGame extends javax.swing.JFrame
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTFPort, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(JTextFieldIP, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel2)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(76, 76, 76)
@@ -85,7 +85,7 @@ public class StartGame extends javax.swing.JFrame
                 .addComponent(jLabel2)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTFPort, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(JTextFieldIP, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
                 .addGap(18, 18, 18)
                 .addComponent(jButton1)
@@ -95,26 +95,31 @@ public class StartGame extends javax.swing.JFrame
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTFPortActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTFPortActionPerformed
+    private void JTextFieldIPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JTextFieldIPActionPerformed
         // TODO add your handling code here:
 
-    }//GEN-LAST:event_jTFPortActionPerformed
+    }//GEN-LAST:event_JTextFieldIPActionPerformed
     
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try 
         {
             // TODO add your handling code here:
-            IP=getTextPort(jTFPort);
-            Receiver receiver = new Receiver(IP, PORT);
+            IP=getTextIp(JTextFieldIP);
+            Receiver.initReceiver(IP, PORT);
             Receiver.send("String", "ready");
-            String data;
-            data = Receiver.getData();
+            String data = (String)Receiver.getData();
             if(data.equals("-1"))
             {
                 JOptionPane.showMessageDialog(null, "Servidor Lleno");
             }
-            else 
+           else 
             {
+                int num = Integer.parseInt(data);
+                System.out.println(num+" Paso!");
+                data = (String)Receiver.getData();
+                System.out.println(data);
+                Thread th = new Thread(new RefreshPlayers(IP, PORT,0));
+                th.start();
                 
             }
         } 
@@ -123,7 +128,7 @@ public class StartGame extends javax.swing.JFrame
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    public String getTextPort(JTextField textField)
+    public String getTextIp(JTextField textField)
     {
         String IP;
         IP =textField.getText();
@@ -166,9 +171,9 @@ public class StartGame extends javax.swing.JFrame
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField JTextFieldIP;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTFPort;
     // End of variables declaration//GEN-END:variables
 }
