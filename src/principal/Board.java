@@ -133,13 +133,10 @@ public class Board extends JPanel
                     g.setFont(font);
                     g.drawString(Message, 100,250);
                     repaint();
-                }else{
-                    JOptionPane.showMessageDialog(this, "No se quien es el ganador");
                 }
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
-            
         } 
     }
     
@@ -149,7 +146,7 @@ public class Board extends JPanel
         @Override
         public void keyPressed(KeyEvent e)
         {
-            if(win)return;
+            if(ClientCore.isWinner)return;
             
             int keycode = e.getKeyCode();
             //Flecha Arriba.
@@ -191,6 +188,7 @@ public class Board extends JPanel
             if(map.getMap(player.getTileX(), player.getTileY())== 5){
                 Message = "Winner";
                 win = true;
+                ClientCore.isWinner = true;
             }
             
             repaint();

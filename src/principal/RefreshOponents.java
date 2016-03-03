@@ -17,6 +17,7 @@ public class RefreshOponents implements Runnable{
     @Override
     public void run() {
         while(true){
+            if(ClientCore.isWinner)break;
             panel.paintPlayer();
         }
     }

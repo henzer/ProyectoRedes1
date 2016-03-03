@@ -28,7 +28,7 @@ public class ServerCore {
     
     public static void setPlayer(int x, int y, int num){
         Player p = positions.get(num);
-        if(x==39 && y==19){
+        if(winner==null && x==39 && y==19){
             winner = p;
         }
         p.setTileX(x);

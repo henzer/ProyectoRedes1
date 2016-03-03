@@ -9,6 +9,7 @@ public class ClientCore {
     public static ArrayList<Player> positions = new ArrayList();
     public static Player actualPlayer = new Player();
     public static Player winner;
+    public static boolean isWinner;
 
     public static void initClientCore(int number, int limit){
         for(int i=0; i<limit;i++){
