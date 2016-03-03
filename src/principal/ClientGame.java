@@ -53,21 +53,25 @@ public class ClientGame extends javax.swing.JFrame {
         this.setDefaultCloseOperation(this.EXIT_ON_CLOSE);
 
         ClientCore.initClientCore(n, 2);
-        
-        
+        int sizeCell = 0;
+        if(limit==2)
+            sizeCell = 10;
+        else
+            sizeCell = 5;
         //crea los tableros para cada jugador1
-        Board board1 = new Board(ClientCore.actualPlayer);
+        Board board1 = new Board(ClientCore.actualPlayer, sizeCell);
         board1.setBounds(75, 100, 415, 440);
         
         BoardOponent board2 = new BoardOponent(ClientCore.getPlayer(ClientCore.getIndexOponents()[0]));
         board2.setBounds(565, 100, 415, 440);
+        //Este es el hilo que se encargara de actualizar al oponente.
+        Thread th = new Thread(new RefreshOponents(board2));
+        th.start();
         
         this.jPanel1.add(board1);
         this.jPanel1.add(board2);
 
-        //Este es el hilo que se encargara de actualizar al oponente.
-        Thread th = new Thread(new RefreshOponents(board2));
-        th.start();
+        
         
         int score1 = board1.getPlayer().getScore();
         int score2 = board2.getPlayer().getScore();

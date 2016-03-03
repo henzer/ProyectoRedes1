@@ -16,7 +16,7 @@ public class Board extends JPanel implements ActionListener
     //Jugador
     private Player player;
     //Size de la casilla.
-    private int tamCasilla;
+    private int sizeCell;
     //Mensaje a mostrar al ganador.
     private String Message="";
     private Font font = new Font("Sans Serif",Font.BOLD, 48);
@@ -24,11 +24,11 @@ public class Board extends JPanel implements ActionListener
     private boolean win = false;
 
     //Constructor para inicializar todos los procesos.
-    public Board(Player p)
+    public Board(Player p, int sizeCell)
     {
         map = new Map();
         player = p;
-        this.tamCasilla = tamCasilla;
+        this.sizeCell = sizeCell;
         
         addKeyListener(new ActionL());
         setFocusable(true);
@@ -44,14 +44,15 @@ public class Board extends JPanel implements ActionListener
     public void setMap(String nameFile) {
         this.map = new Map(nameFile);
     }
-    
-    public int getTamCasilla() {
-        return tamCasilla;
+
+    public int getSizeCell() {
+        return sizeCell;
     }
 
-    public void setTamCasilla(int tamCasilla) {
-        this.tamCasilla = tamCasilla;
+    public void setSizeCell(int sizeCell) {
+        this.sizeCell = sizeCell;
     }
+
     
     
     public boolean isWin() {
@@ -108,25 +109,25 @@ public class Board extends JPanel implements ActionListener
                     */
                     if(map.getMap(x, y)==0)
                     {
-                        g.drawImage(map.getGrass(), x*tamCasilla, y*tamCasilla, null);
+                        g.drawImage(map.getGrass(), x*sizeCell, y*sizeCell, null);
                     }
                     if(map.getMap(x, y)==1)
                     {
-                        g.drawImage(map.getWall(), x*tamCasilla, y*tamCasilla, null);
+                        g.drawImage(map.getWall(), x*sizeCell, y*sizeCell, null);
                     }
                     if(map.getMap(x, y)==4)
                     {
-                        g.drawImage(map.getStart(), x*tamCasilla, y*tamCasilla, null);
+                        g.drawImage(map.getStart(), x*sizeCell, y*sizeCell, null);
                     }
                     if(map.getMap(x, y)==5)
                     {
-                        g.drawImage(map.getFinish(), x*tamCasilla, y*tamCasilla, null);
+                        g.drawImage(map.getFinish(), x*sizeCell, y*sizeCell, null);
                     }
                 }
             } 
            
             //Dibuja el jugador.
-            g.drawImage(img.getImage(),player.getTileX()*tamCasilla, player.getTileY()*tamCasilla, null);
+            g.drawImage(img.getImage(),player.getTileX()*sizeCell, player.getTileY()*sizeCell, null);
         }
         
         if(win)
