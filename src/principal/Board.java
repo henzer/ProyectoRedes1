@@ -15,6 +15,8 @@ public class Board extends JPanel implements ActionListener
     private Map map;
     //Jugador
     private Player player;
+    //Size de la casilla.
+    private int tamCasilla;
     //Mensaje a mostrar al ganador.
     private String Message="";
     private Font font = new Font("Sans Serif",Font.BOLD, 48);
@@ -26,6 +28,7 @@ public class Board extends JPanel implements ActionListener
     {
         map = new Map();
         player = p;
+        this.tamCasilla = tamCasilla;
         
         addKeyListener(new ActionL());
         setFocusable(true);
@@ -41,6 +44,15 @@ public class Board extends JPanel implements ActionListener
     public void setMap(String nameFile) {
         this.map = new Map(nameFile);
     }
+    
+    public int getTamCasilla() {
+        return tamCasilla;
+    }
+
+    public void setTamCasilla(int tamCasilla) {
+        this.tamCasilla = tamCasilla;
+    }
+    
     
     public boolean isWin() {
         return win;
@@ -96,25 +108,25 @@ public class Board extends JPanel implements ActionListener
                     */
                     if(map.getMap(x, y)==0)
                     {
-                        g.drawImage(map.getGrass(), x*10, y*10, null);
+                        g.drawImage(map.getGrass(), x*tamCasilla, y*tamCasilla, null);
                     }
                     if(map.getMap(x, y)==1)
                     {
-                        g.drawImage(map.getWall(), x*10, y*10, null);
+                        g.drawImage(map.getWall(), x*tamCasilla, y*tamCasilla, null);
                     }
                     if(map.getMap(x, y)==4)
                     {
-                        g.drawImage(map.getStart(), x*10, y*10, null);
+                        g.drawImage(map.getStart(), x*tamCasilla, y*tamCasilla, null);
                     }
                     if(map.getMap(x, y)==5)
                     {
-                        g.drawImage(map.getFinish(), x*10, y*10, null);
+                        g.drawImage(map.getFinish(), x*tamCasilla, y*tamCasilla, null);
                     }
                 }
             } 
            
             //Dibuja el jugador.
-            g.drawImage(img.getImage(),player.getTileX()*10, player.getTileY()*10, null);
+            g.drawImage(img.getImage(),player.getTileX()*tamCasilla, player.getTileY()*tamCasilla, null);
         }
         
         if(win)
