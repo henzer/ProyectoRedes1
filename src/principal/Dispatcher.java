@@ -73,7 +73,7 @@ public class Dispatcher implements Runnable {
             }
             
         } catch (IOException ex) {
-            ex.printStackTrace();
+            //ex.printStackTrace();
         }
     }
     

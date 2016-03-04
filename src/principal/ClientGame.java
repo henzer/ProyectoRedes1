@@ -32,6 +32,8 @@ public class ClientGame extends javax.swing.JFrame {
             }
         });
     private void updateClock(){
+        if(ClientCore.isWinner)
+            timer.stop();
         long elapsedTime = System.currentTimeMillis() - startTime;
         long elapsedSeconds = elapsedTime / 1000;
         long elapsedSeconds1 = elapsedSeconds%60;
@@ -76,38 +78,10 @@ public class ClientGame extends javax.swing.JFrame {
         int score1 = board1.getPlayer().getScore();
         int score2 = board2.getPlayer().getScore();
 
-        this.lblScore1.setText("" + score1);
-        this.lblScore2.setText("" + score2);
+        //this.lblScore1.setText("" + score1);
+        //this.lblScore2.setText("" + score2);
         
         this.setVisible(true);
-        /*
-        while(this.isVisible()){
-            if(board1.isWin() || board2.isWin()){
-                
-                
-                this.jPanel1.remove(board1);
-                this.jPanel1.remove(board2);
-                
-                System.out.println("hola, entro al if");
-                System.out.println("B1: " + board1.isWin() + "B2: " + board2.isWin());
-                
-                board1.setMap("matrizLaberinto2.txt");
-                board1.setBounds(75, 100, 415, 440);
-                
-                board2.setMap("matrizLaberinto2.txt");
-                board2.setBounds(75, 100, 415, 440);
-                
-                this.jPanel1.add(board1);
-                this.jPanel1.add(board2);
-                this.jPanel1.revalidate();
-                
-                board1.repaint();
-                board2.repaint();
-                this.setVisible(true);
-            }
-        }
-        */
-        
     }
 
     /**
@@ -122,10 +96,6 @@ public class ClientGame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         label1 = new java.awt.Label();
         label2 = new java.awt.Label();
-        label3 = new java.awt.Label();
-        label4 = new java.awt.Label();
-        lblScore2 = new java.awt.Label();
-        lblScore1 = new java.awt.Label();
         lblTime = new java.awt.Label();
         lblTime1 = new java.awt.Label();
 
@@ -138,18 +108,6 @@ public class ClientGame extends javax.swing.JFrame {
 
         label2.setFont(new java.awt.Font("Lucida Console", 0, 36)); // NOI18N
         label2.setText("Player 1");
-
-        label3.setFont(new java.awt.Font("Lucida Console", 0, 36)); // NOI18N
-        label3.setText("Score:");
-
-        label4.setFont(new java.awt.Font("Lucida Console", 0, 36)); // NOI18N
-        label4.setText("Score:");
-
-        lblScore2.setFont(new java.awt.Font("Lucida Console", 0, 36)); // NOI18N
-        lblScore2.setText("45 pts");
-
-        lblScore1.setFont(new java.awt.Font("Lucida Console", 0, 36)); // NOI18N
-        lblScore1.setText("50 pts");
 
         lblTime.setFont(new java.awt.Font("Lucida Console", 0, 24)); // NOI18N
 
@@ -168,18 +126,10 @@ public class ClientGame extends javax.swing.JFrame {
                 .addComponent(label1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(174, 174, 174))
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblScore1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39)
+                .addGap(378, 378, 378)
                 .addComponent(lblTime1, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblTime, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(lblScore2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -191,12 +141,8 @@ public class ClientGame extends javax.swing.JFrame {
                     .addComponent(label1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(432, 432, 432)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lblScore1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(lblTime1, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblTime, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(lblScore2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblTime, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21))
         );
 
@@ -225,10 +171,6 @@ public class ClientGame extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private java.awt.Label label1;
     private java.awt.Label label2;
-    private java.awt.Label label3;
-    private java.awt.Label label4;
-    private java.awt.Label lblScore1;
-    private java.awt.Label lblScore2;
     private java.awt.Label lblTime;
     private java.awt.Label lblTime1;
     // End of variables declaration//GEN-END:variables

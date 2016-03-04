@@ -42,6 +42,7 @@ public class GetData implements Runnable
         try {
             out = new DataOutputStream(socket.getOutputStream());
             while(true){
+                if(ClientCore.isWinner)break;
                 //Se obtienen las posiciones de todos los jugadores adversarios.
                 int[] indexes = ClientCore.getIndexOponents();
                 for(int i = 0; i<indexes.length; i++){

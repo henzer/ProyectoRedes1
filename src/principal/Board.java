@@ -132,7 +132,6 @@ public class Board extends JPanel
                     g.setColor(Color.yellow);
                     g.setFont(font);
                     g.drawString(Message, 100,250);
-                    repaint();
                 }
             } catch (IOException ex) {
                 ex.printStackTrace();
@@ -189,6 +188,7 @@ public class Board extends JPanel
                 Message = "Winner";
                 win = true;
                 ClientCore.isWinner = true;
+                player.setScore(1);
             }
             
             repaint();
